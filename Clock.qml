@@ -113,13 +113,14 @@ Item {
         color: "#6872A5"
     }
 
-    SecondNeedle {
+    HourNeedle {
         anchors {
             top: id_plate.top
             bottom: id_plate.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        value: id_root.seconds
+        value: id_root.hours
+        valueminute: id_root.minutes
     }
 
     MinuteNeedle {
@@ -131,13 +132,20 @@ Item {
         value: id_root.minutes
     }
 
-    HourNeedle {
+    SecondNeedle {
         anchors {
             top: id_plate.top
             bottom: id_plate.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        value: id_root.hours
-        valueminute: id_root.minutes
+        value: id_root.seconds
+    }
+
+    Rectangle {
+        anchors.centerIn: parent
+        height: id_plate.height*0.02
+        width: height
+        radius: width/2
+        color: "red"
     }
 }
