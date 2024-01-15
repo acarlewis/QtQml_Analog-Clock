@@ -113,7 +113,7 @@ Item {
         color: "#6872A5"
     }
 
-    HourNeedle {
+    HoursNeedle {
         anchors {
             top: id_plate.top
             bottom: id_plate.bottom
@@ -123,7 +123,7 @@ Item {
         valueminute: id_root.minutes
     }
 
-    MinuteNeedle {
+    MinutesNeedle {
         anchors {
             top: id_plate.top
             bottom: id_plate.bottom
@@ -132,7 +132,7 @@ Item {
         value: id_root.minutes
     }
 
-    SecondNeedle {
+    SecondsNeedle {
         anchors {
             top: id_plate.top
             bottom: id_plate.bottom
