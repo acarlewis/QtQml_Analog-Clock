@@ -5,6 +5,8 @@ Item {
     property int value: 0
     property int granularity: 60
 
+    property real minutes: 0
+
     Rectangle {
         id: minutesHandle
         width: 4
@@ -22,7 +24,7 @@ Item {
             onPositionChanged: {
                 var angle = Math.atan2(height / 2 - y, x - width / 2);
                 var degrees = angle * 180 / Math.PI;
-                // clock.minutes = 30 - degrees / 6;
+                id_root.minutes = 30 - degrees / 6;
                 id_root.value = Math.round(degrees / (360 / id_root.granularity)) % id_root.granularity;
             }
         }
