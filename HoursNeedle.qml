@@ -6,7 +6,10 @@ Item {
     property int valueminute: 0
     property int granularity: 12
 
-    property real hours: 0
+    width: 6;
+    height: 12;
+    property real centerX : (width / 2);
+    property real centerY : (height / 2);
 
     Rectangle {
         id: hoursHandle
@@ -20,15 +23,29 @@ Item {
         antialiasing: true
 
         MouseArea {
-            anchors.fill: parent
-            drag.target: parent
-            onPositionChanged: {
-                var angle = Math.atan2(height / 2 - y, x - width / 2);
-                var degrees = angle * 180 / Math.PI;
-                // id_root.value = Math.round((180 - degrees) / 30) % 12;
-                id_root.hours = 180 - degrees / 30;
-                id_root.value = Math.round(degrees / (180 / id_root.granularity)) % id_root.granularity;
+
+            anchors.fill: parent;
+            drag.target: parent;
+            onPositionChanged: (mouse)=> {
+                var point =  mapToItem (id_root, mouse.x, mouse.y);
+                var diffX = (point.x - id_root.centerX);
+                var diffY = -1 * (point.y - id_root.centerY);
+                var rad = Math.atan (diffY / diffX);
+                var deg = (rad * 180 / Math.PI);
+                if (diffX > 0 && diffY > 0) {
+                    id_root.rotation = 90 - Math.abs (deg);
+                }
+                else if (diffX > 0 && diffY < 0) {
+                    id_root.rotation = 90 + Math.abs (deg);
+                }
+                else if (diffX < 0 && diffY > 0) {
+                    id_root.rotation = 270 + Math.abs (deg);
+                }
+                else if (diffX < 0 && diffY < 0) {
+                    id_root.rotation = 270 - Math.abs (deg);
+                }
             }
+
         }
     }
 
